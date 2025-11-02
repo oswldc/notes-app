@@ -32,20 +32,28 @@ class NotesInput extends React.Component {
 
   onSubmitEventHandler(event) {
     event.preventDefault();
-    this.props.addNote(this.state);
+
+    const newNote = {
+      id: +new Date(),
+      title: this.state.title,
+      body: this.state.body,
+      createdAt: new Date().toISOString(),
+    };
+
+    this.props.addNote(newNote);
   }
 
   render() {
     return (
       <form className="notes-input" onSubmit={this.onSubmitEventHandler}>
         <input
-          type="text"
+          type="textarea"
           placeholder="Masukkan Judul"
           value={this.state.title}
           onChange={this.onTitleChangeEventHandler}
         />
         <input
-          type="text"
+          type="textarea"
           placeholder="Masukkan Catatan"
           value={this.state.body}
           onChange={this.onBodyChangeEventHandler}

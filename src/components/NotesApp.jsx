@@ -31,7 +31,7 @@ class NotesApp extends React.Component {
             id: +new Date(),
             title,
             body,
-            createdAt: this.state.date,
+            createdAt: new Date().toISOString(),
           },
         ],
       };
@@ -42,7 +42,6 @@ class NotesApp extends React.Component {
     return (
       <div className="notes-app">
         <h1>Notes App</h1>
-        <h2>Tambah Catatan</h2>
         <NotesInput addNote={this.onAddNoteHandler} />
         <h2>Catatan Aktif</h2>
         <NotesList notes={this.state.notes} onDelete={this.onDeleteHandler} />
