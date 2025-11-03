@@ -3,6 +3,7 @@ import { getInitialData } from '../utils/index.js';
 import { showFormattedDate } from '../utils/index.js';
 import NotesList from './NotesList.jsx';
 import NotesInput from './NotesInput.jsx';
+import NotesHeader from './NotesHeader.jsx';
 
 class NotesApp extends React.Component {
   constructor(props) {
@@ -11,10 +12,12 @@ class NotesApp extends React.Component {
     this.state = {
       notes: getInitialData(),
       date: showFormattedDate(),
+      searchKeyword: '',
     };
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+    this.onSearchChangeHandler = this.onSearchChangeHandler.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -38,13 +41,25 @@ class NotesApp extends React.Component {
     });
   }
 
+  onSearchChangeHandler(keyword) {
+    this.setState({ searchKeyword: keyword });
+  }
+
   render() {
+    const filteredNotes = this.state.notes.filter((note) => {
+      return note.title
+        .toLowerCase()
+        .includes(this.state.searchKeyword.toLowerCase());
+    });
     return (
       <div className="notes-app">
-        <h1>Notes App</h1>
+        <NotesHeader
+          searchKeyword={this.state.searchKeyword}
+          onSearchChange={this.onSearchChangeHandler}
+        />
         <NotesInput addNote={this.onAddNoteHandler} />
         <h2>Catatan Aktif</h2>
-        <NotesList notes={this.state.notes} onDelete={this.onDeleteHandler} />
+        <NotesList notes={filteredNotes} onDelete={this.onDeleteHandler} />
       </div>
     );
   }

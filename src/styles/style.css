@@ -27,18 +27,31 @@ textarea::placeholder {
   font-weight: bold;
 }
 
-.note-app__header {
+.notes-app_header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 4px 16px;
-  border-bottom: 1px solid #aaa;
+  padding: 1rem 1.5rem;
+  color: white;
+  border-radius: 8px;
 }
 
-.note-app__header h1 {
-  margin: 8px 0;
-  flex: 1;
-  color: white;
+.notes-header_title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.notes-header_search {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: #e4e4e4;
+  outline: none;
+  width: 200px;
+}
+.notes-header_search:focus {
+  box-shadow: 0 0 0 2px #e4e4e4;
 }
 
 .notes-app {
@@ -82,13 +95,17 @@ textarea::placeholder {
   display: block;
   width: 100%;
   padding: 8px;
-  background-color: transparent;
+  background-color:#e4e4e4;
   font-family: 'Inter', sans-serif;
-  color: white;
+  color: #0f1d47;
   border: 1px solid #aaa;
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.notes-input button:hover {
+  color: green;
 }
 
 .notes-list {
@@ -144,7 +161,6 @@ textarea::placeholder {
 .note-item__archive-button {
   display: block;
   width: 100%;
-  background-color: #aaa;
   padding: 8px 0;
   font-family: 'Inter', sans-serif;
   font-weight: bold;
@@ -153,8 +169,9 @@ textarea::placeholder {
 }
 
 .notes-item_delete {
-  border-right: 1px solid #aaa;
+  background-color: #e4e4e4
   color: #0f1d47;
+  backdrop-filter: blur(10px);
 }
 
 .note-item__archive-button {
